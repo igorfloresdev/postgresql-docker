@@ -1,0 +1,20 @@
+volumes:
+  data:
+
+services:
+  database:
+    image: postgres:16
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=123456
+    volumes:
+      - data:/var/lib/postgresql/data
+      - type: tmpfs
+        target: /dev/shm
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1G
+
